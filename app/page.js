@@ -27,7 +27,7 @@ export default function Home() {
   const [n, setN] = useState(4);
   const [m, setM] = useState(4);
   const boardRef = useRef();
-  // We'll use a callback to get status and reset from Board
+
   const [status, setStatus] = useState("");
   const handleReset = () => {
     if (boardRef.current) {
@@ -37,7 +37,7 @@ export default function Home() {
 
   const borderColor = getStatusColor(status);
   const bgColor = hexToRgba(borderColor, 0.18);
-  // For ambient gradient, use a radial gradient with borderColor
+  
   const ambientGradient = `radial-gradient(circle at 60% 40%, ${hexToRgba(borderColor, 0.25)} 0%, #f8fafc 100%)`;
 
   return (
@@ -49,12 +49,12 @@ export default function Home() {
         overflow: 'hidden',
       }}
     >
-      {/* Header */}
+      
       <Header n={n} setN={setN} m={m} setM={setM} status={status} onReset={handleReset}
         borderColor={borderColor}
         bgColor={bgColor}
       />
-      {/* Board below header */}
+      
       <main className="flex flex-col gap-[32px] row-start-2 items-center sm:items-start">
         <div className="my-8 w-full flex flex-col items-center gap-4">
           <Board n={n} m={m} setStatus={setStatus} ref={boardRef}

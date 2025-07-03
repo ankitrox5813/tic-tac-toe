@@ -2,7 +2,7 @@
 import React, { useState, useEffect, useImperativeHandle, forwardRef } from "react";
 import Image from "next/image";
 
-// Helper to check for M in a row
+
 function checkWinner(board, m) {
   const n = board.length;
   const lines = [
@@ -50,7 +50,7 @@ const Board = forwardRef(function Board({ n = 3, m = 3, setStatus, borderColor, 
     setXIsNext(true);
   }, [n]);
 
-  // Expose reset method to parent
+  
   useImperativeHandle(ref, () => ({
     resetBoard: () => {
       setBoard(Array.from({ length: n }, () => Array(n).fill(null)));
@@ -58,7 +58,7 @@ const Board = forwardRef(function Board({ n = 3, m = 3, setStatus, borderColor, 
     }
   }), [n]);
 
-  // Update status in parent
+  
   useEffect(() => {
     let status;
     if (winner) status = `Winner: ${winner}`;
@@ -78,8 +78,8 @@ const Board = forwardRef(function Board({ n = 3, m = 3, setStatus, borderColor, 
     if (!moveMade) setMoveMade(true);
   };
 
-  // Responsive board size (fix hydration error)
-  const [maxBoardPx, setMaxBoardPx] = useState(500); // Default for SSR
+  
+  const [maxBoardPx, setMaxBoardPx] = useState(500); 
   const borderPadding = 12;
   useEffect(() => {
     function updateSize() {
@@ -92,7 +92,7 @@ const Board = forwardRef(function Board({ n = 3, m = 3, setStatus, borderColor, 
     return () => window.removeEventListener('resize', updateSize);
   }, []);
 
-  const cellSize = Math.floor((maxBoardPx - (n - 1) * 4) / n); // 4px gap
+  const cellSize = Math.floor((maxBoardPx - (n - 1) * 4) / n); 
   const fontSize = cellSize > 32 ? Math.floor(cellSize * 0.3) : 12;
   const gridPx = cellSize * n + (n - 1) * 4;
   const wrapperPx = gridPx + borderPadding * 2;

@@ -1,6 +1,5 @@
 "use client";
 import React, { useState, useEffect, useImperativeHandle, forwardRef } from "react";
-import Image from "next/image";
 
 
 function checkWinner(board, m) {
@@ -149,10 +148,10 @@ const Board = forwardRef(function Board({ n = 3, m = 3, setStatus, borderColor, 
                     disabled={!!cell || !!winner}
                   >
                     {cell === "X" && (
-                      <Image src="/assets/x.png" alt="X" fill style={{ objectFit: "contain" }} />
+                      <img src="/assets/x.png" alt="X" style={{ width: "100%", height: "100%", objectFit: "contain" }} />
                     )}
                     {cell === "O" && (
-                      <Image src="/assets/o.png" alt="O" fill style={{ objectFit: "contain" }} />
+                      <img src="/assets/o.png" alt="O" style={{ width: "100%", height: "100%", objectFit: "contain" }} />
                     )}
                   </button>
                 ))

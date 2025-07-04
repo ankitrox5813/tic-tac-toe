@@ -33,8 +33,18 @@ export default function Header({ n, setN, m, setM, status, onReset, borderColor,
               type="number"
               min={3}
               max={15}
-              value={n}
-              onChange={e => setN(Math.max(3, Math.min(15, Number(e.target.value))))}
+              value={n === "" ? "" : n}
+              onChange={e => {
+                const value = e.target.value;
+                if (value === "") {
+                  setN("");
+                } else {
+                  const num = Number(value);
+                  if (!isNaN(num)) {
+                    setN(Math.max(3, Math.min(15, num)));
+                  }
+                }
+              }}
               className="ml-2 border rounded px-2 py-1 w-16 text-center"
             />
           </label>
@@ -44,8 +54,18 @@ export default function Header({ n, setN, m, setM, status, onReset, borderColor,
               type="number"
               min={3}
               max={n}
-              value={m}
-              onChange={e => setM(Math.max(3, Math.min(n, Number(e.target.value))))}
+              value={m === "" ? "" : m}
+              onChange={e => {
+                const value = e.target.value;
+                if (value === "") {
+                  setM("");
+                } else {
+                  const num = Number(value);
+                  if (!isNaN(num)) {
+                    setM(Math.max(3, Math.min(n, num)));
+                  }
+                }
+              }}
               className="ml-2 border rounded px-2 py-1 w-16 text-center"
             />
           </label>
